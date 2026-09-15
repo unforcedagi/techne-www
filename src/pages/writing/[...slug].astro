@@ -1,0 +1,14 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { getWriting, dateLabel, local } from '../../lib/writing';
+export async function getStaticPaths() { return (await getWriting()).map(piece => ({ params: { slug: piece.id }, props: { piece } })); }
+interface Props { piece: CollectionEntry<'writing'>; }
+const { piece } = Astro.props;
+const { Content } = await render(piece);
+---
+<Layout title={piece.data.title} description={piece.data.summary} atUri={piece.data.atUri} reading>
+  <header class="page-heading"><a class="eyebrow" href={local('writing/')}>← The writing</a>{piece.data.draft && <p class="draft-label meta">Draft · local preview</p>}<h1>{piece.data.title}</h1><p class="lead">{piece.data.summary}</p><div class="byline meta"><span>{piece.data.authors.map((author, i) => <>{i > 0 && ' & '}{author.url ? <a href={author.url}>{author.name}</a> : author.name}</>)}</span><time datetime={piece.data.date.toISOString()}>{dateLabel(piece.data.date)}</time></div><div class="sunset" aria-hidden="true"></div></header>
+  <article class="prose"><Content /></article>
+  <footer class="piece-footer">{piece.data.atUri && <p class="meta">Also on atproto: <a href={piece.data.atUri}>{piece.data.atUri}</a></p>}<a class="meta" href={local('writing/')}>← Back to all writing</a></footer>
+</Layout>

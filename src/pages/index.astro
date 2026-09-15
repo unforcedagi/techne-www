@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WritingList from '../components/WritingList.astro';
+import { site } from '../content/site.config';
+import { getWriting, local } from '../lib/writing';
+const pieces = (await getWriting()).slice(0, 3);
+const visionParts = site.vision.split('integrated');
+---
+<Layout>
+  <section class="hero">
+    <div class="eyebrow">Technology · Community · Life</div>
+    <h1>{visionParts.length === 2 ? <>{visionParts[0]}<br /><em>integrated</em>{visionParts[1]}</> : site.vision}<span class="period">.</span></h1>
+    <div class="hero-bottom"><p class="lead">{site.tagline}</p><span class="meta place">Rooted in Boulder.<br />Connected to a wider world.</span></div>
+    <div class="sunset" aria-hidden="true"></div>
+  </section>
+  <section class="intro section-grid" aria-labelledby="practice-title">
+    <div><span class="eyebrow">01 / The practice</span><h2 id="practice-title">Building a<br />common home.</h2></div>
+    <div><span class="placeholder meta">Working introduction · placeholder</span><p class="intro-copy">{site.introduction}</p><a class="text-link" href={local('about/')}>A little more about Techne <span aria-hidden="true">→</span></a></div>
+  </section>
+  <section class="writing-section" aria-labelledby="writing-title"><div class="section-heading"><div><span class="eyebrow">02 / The writing</span><h2 id="writing-title">Thinking in company.</h2></div><a class="meta" href={local('writing/')}>All writing →</a></div><WritingList pieces={pieces} /></section>
+  <section class="commons-section" aria-labelledby="commons-title"><span class="eyebrow">03 / The commons</span><div class="section-heading"><h2 id="commons-title">The work already underway.</h2><a class="meta" href={local('join/')}>Find your way in →</a></div><div class="rooms">{site.rooms.map(room => <a href={room.url}><h3>{room.name} <span aria-hidden="true">↗</span></h3><p>{room.description}</p></a>)}</div></section>
+</Layout>

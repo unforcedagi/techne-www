@@ -1,0 +1,12 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { local, dateLabel } from '../lib/writing';
+interface Props { pieces: CollectionEntry<'writing'>[]; }
+const { pieces } = Astro.props;
+---
+<div class="writing-list">
+  {pieces.map(piece => <article class="writing-row">
+    <div class="meta"><time datetime={piece.data.date.toISOString()}>{dateLabel(piece.data.date)}</time>{piece.data.draft && <span class="draft-label">Draft · local preview</span>}</div>
+    <div><h3><a href={local(`writing/${piece.id}/`)}>{piece.data.title} <span aria-hidden="true">↗</span></a></h3><p>{piece.data.summary}</p><div class="meta">{piece.data.authors.map(author => author.name).join(' & ')}</div></div>
+  </article>)}
+</div>

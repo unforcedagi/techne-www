@@ -1,0 +1,33 @@
+---
+import '../styles/global.css';
+import { site } from '../content/site.config';
+import { local } from '../lib/writing';
+interface Props { title?: string; description?: string; atUri?: string; reading?: boolean; }
+const { title, description = site.description, atUri, reading = false } = Astro.props;
+const nav = [{ label: 'Writing', path: 'writing/' }, { label: 'About', path: 'about/' }, { label: 'Join us', path: 'join/' }];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <title>{title ? `${title} · ${site.name}` : `${site.name} · ${site.tagline}`}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href={local('favicon.svg')} type="image/svg+xml" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    {atUri && <link rel="alternate" href={atUri} />}
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header wide">
+      <a class="wordmark" href={local()} aria-label="Techne home">techne<span aria-hidden="true">.</span></a>
+      <nav aria-label="Main navigation">{nav.map(item => <a href={local(item.path)} aria-current={Astro.url.pathname.startsWith(local(item.path)) ? 'page' : undefined}>{item.label}</a>)}</nav>
+    </header>
+    <main id="main" class:list={[reading ? 'document' : 'wide']}><slot /></main>
+    <footer class="site-footer wide">
+      <div><a class="wordmark small" href={local()}>techne<span aria-hidden="true">.</span></a><p>{site.tagline}</p></div>
+      <div class="meta">{site.hub.address}<br />{site.hub.city}<br /><a href={site.hub.url}>Visit Regen Hub ↗</a></div>
+    </footer>
+  </body>
+</html>

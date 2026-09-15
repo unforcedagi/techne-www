@@ -1,0 +1,5 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../content/site.config';
+---
+<Layout title="About" reading><header class="page-heading"><span class="eyebrow">About Techne</span><h1>A practice,<br />held in common.</h1><p class="lead">{site.vision}.</p><span class="placeholder meta">Working introduction · placeholder</span></header><div class="prose"><p>{site.introduction}</p>{site.entities.map(entity => <section><h2>{entity.name}</h2><p>{entity.description}</p></section>)}<section><h2>A place to begin.</h2><p>Our Boulder home is <a href={site.hub.url}>{site.hub.name}</a>.</p><address>{site.hub.address}<br />{site.hub.city}</address><p><a href={site.contact}>Get in touch through the participation page ↗</a></p></section></div></Layout>

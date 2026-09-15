@@ -1,0 +1,7 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import WritingList from '../../components/WritingList.astro';
+import { getWriting } from '../../lib/writing';
+const pieces = await getWriting();
+---
+<Layout title="Writing"><header class="page-heading"><span class="eyebrow">The writing</span><h1>Thinking in company.</h1><p class="lead">Notes and essays on technology, community, and the lives we make together.</p></header><WritingList pieces={pieces} /></Layout>

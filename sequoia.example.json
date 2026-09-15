@@ -1,0 +1,18 @@
+{
+  "$schema": "https://tangled.org/stevedylan.dev/sequoia/raw/main/sequoia.schema.json",
+  "contentDir": "src/content/writing",
+  "publicationUri": "at://did:plc:REPLACE_WITH_COLLECTIVE_DID/site.standard.publication/REPLACE_WITH_RECORD_KEY",
+  "siteUrl": "https://unforcedagi.github.io/techne-www",
+  "pathPrefix": "/writing",
+  "outputDir": "dist",
+  "publicDir": "public",
+  "frontmatter": {
+    "title": "title",
+    "description": "summary",
+    "publishDate": "date",
+    "draft": "draft"
+  },
+  "bluesky": {
+    "enabled": false
+  }
+}
