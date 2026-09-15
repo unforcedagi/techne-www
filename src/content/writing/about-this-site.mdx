@@ -1,26 +1,28 @@
 ---
-title: A place to think together
+title: About this site
 authors:
   - name: Techne
     url: https://techne.coop/
 date: 2026-09-15
-summary: An opening note on this space for writing, and the way we hope to build it.
+summary: How this site stores writing, how to add a piece, and what remains undecided about publishing.
 draft: false
 ---
 import OpenNote from '../../components/OpenNote.astro';
 
-This is a beginning: a place for writing that grows out of shared practice. We want to make room for careful thought, unfinished questions, and the things we learn by working alongside one another.
+This site renders Markdown and MDX files from a [public repository](https://github.com/unforcedagi/techne-www). Astro builds those files into web pages, and GitHub Pages hosts the result. The writing files live in `src/content/writing/`.
 
-Our interests meet where technology, community, and everyday life overlap. What do our tools make possible? What kinds of relationships do they encourage? What would it mean to build things that help us feel more at home in the world?
+## Adding a piece
 
-## Words we can carry with us
+Create a `.md` file in that directory, or use `.mdx` when a piece needs a component. Add frontmatter with a title, authors, date, summary, and draft status. The [README](https://github.com/unforcedagi/techne-www#readme) provides the format and local preview commands.
 
-The writing here lives as Markdown files in a [public repository](https://github.com/unforcedagi/techne-www). The site gives those files a readable form, but the words are also available on their own. A piece can be read, revised, or carried into another tool without rebuilding a website around it.
+Preview the piece locally, then submit the change through a pull request. Changes merged into the main branch run the site's checks and deploy through GitHub Actions. Drafts appear in the development preview but are excluded from the production site. Their source files are still public in the repository.
 
-Some pieces may include a small interaction when it helps express an idea. Most will simply be words on a page.
+## An MDX example
+
+The disclosure below is an example of a component inside a writing file. It uses the browser's built-in disclosure behavior.
 
 <OpenNote />
 
-We are also exploring how this writing might travel through atproto. That publishing choice is still open; this site does not publish there yet.
+## Publishing beyond this site
 
-For now, this is a modest first step. A shared space to pay attention, find language for what matters, and keep the conversation going.
+Atproto publishing is still being decided. The content schema includes optional metadata for future integration, but the site does not publish records to atproto. Standard.site and the Techne SDK remain options; neither is connected here.

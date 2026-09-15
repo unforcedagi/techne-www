@@ -6,8 +6,8 @@ export const site = {
   description: 'Writing and practice at the meeting of technology, community, and life.',
   introduction: 'Techne brings people together to practice a more thoughtful relationship with technology. We build tools, share what we learn, and tend the communities we are part of. Our writing is an invitation to explore how these things belong together.',
   entities: [
-    { name: 'Techne Cooperative', description: 'A place for shared practice: people working alongside one another, learning together, and shaping tools in common.' },
-    { name: 'Techne Foundation', description: 'A wider inquiry into technology in service of life, and the knowledge and relationships that can support it.' },
+    { name: 'Techne Cooperative', placeholder: true, description: 'A place for shared practice: people working alongside one another, learning together, and shaping tools in common.' },
+    { name: 'Techne Foundation', placeholder: true, description: 'A wider inquiry into technology in service of life, and the knowledge and relationships that can support it.' },
   ],
   hub: { name: 'Regen Hub', address: '1515 Walnut Street', city: 'Boulder, Colorado', url: 'https://regenhub.xyz/' },
   contact: 'https://techne.coop/participation/',
