@@ -1,0 +1,43 @@
+<section class="essay-experiment portability-lab" aria-labelledby="portability-title">
+  <span class="eyebrow">Try the argument / 02</span>
+  <h3 id="portability-title">Change your host.<br />Keep your people?</h3>
+  <p>This small model asks what happens when an account’s address belongs to the host, or can travel between hosts.</p>
+  <div class="lab-controls" hidden>
+    <div class="lab-modes" role="group" aria-label="Network model">
+      <button type="button" data-model="enclosed" aria-pressed="true">Host-bound</button>
+      <button type="button" data-model="portable" aria-pressed="false">Portable</button>
+    </div>
+    <button type="button" class="move-host">Move to another host →</button>
+  </div>
+  <div class="network-scene" data-moved="false" data-model="enclosed" aria-hidden="true">
+    <div class="network-host old-host"><span>Host A</span></div>
+    <div class="network-host new-host"><span>Host B</span></div>
+    <div class="traveller"><span class="person-dot"></span>You</div>
+    <div class="network-thread"></div>
+    <div class="network-people"><span>Friend</span><span>Neighbour</span><span>Collaborator</span></div>
+  </div>
+  <p class="lab-result" aria-live="polite">Host-bound: your account’s address belongs to Host A. Starting over at Host B does not automatically carry those connections.</p>
+  <details class="lab-caveat"><summary>What this model leaves out</summary><p>Portability can preserve identity and records across hosts. It does not guarantee attention, trust, reach, or that every app supports every record. Actual migration also depends on identity control and available data backups. This is a conceptual comparison, not an account-migration tool.</p></details>
+</section>
+<script>
+  document.querySelectorAll<HTMLElement>('.portability-lab').forEach(lab => {
+    const controls = lab.querySelector<HTMLElement>('.lab-controls')!;
+    const scene = lab.querySelector<HTMLElement>('.network-scene')!;
+    const move = lab.querySelector<HTMLButtonElement>('.move-host')!;
+    const result = lab.querySelector<HTMLElement>('.lab-result')!;
+    let model = 'enclosed'; let moved = false;
+    const update = () => {
+      scene.dataset.model = model; scene.dataset.moved = String(moved);
+      lab.querySelectorAll<HTMLButtonElement>('[data-model]').forEach(button => {
+        if (button.tagName === 'BUTTON') button.setAttribute('aria-pressed', String(button.dataset.model === model));
+      });
+      move.textContent = moved ? 'Return to Host A ↶' : 'Move to another host →';
+      result.textContent = model === 'portable'
+        ? (moved ? 'You moved. Your portable identity still points to you, now at Host B. Your connections can follow that identity.' : 'Portable: your identity can point to a new host. Moving the hosting does not require a new identity.')
+        : (moved ? 'You moved, but the old address stayed at Host A. A new account at Host B starts without those automatic connections.' : 'Host-bound: your account’s address belongs to Host A. Starting over at Host B does not automatically carry those connections.');
+    };
+    lab.querySelectorAll<HTMLButtonElement>('button[data-model]').forEach(button => button.addEventListener('click', () => { model = button.dataset.model!; update(); }));
+    move.addEventListener('click', () => { moved = !moved; update(); });
+    controls.hidden = false;
+  });
+</script>

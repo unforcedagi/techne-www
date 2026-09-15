@@ -40,7 +40,7 @@ SITE_URL=https://techne.coop BASE_PATH=/ npm run build
 
 ## Deliberately absent
 
-No atproto publishing or fetching, auth, analytics, database, CMS, or imported essay drafts/freewrites. Optional `atUri`, `publication` (defaults to `techne.coop`), `lexicon`, and author `did` fields are inert. See [publishing notes](scripts/publish/README.md) for the two undecided paths. MDX accepts trusted author code at build time; the sample interaction is native HTML disclosure and needs no JavaScript.
+No atproto publishing or fetching, auth, analytics, database, or CMS. The public essay is an explicitly labeled exploratory synthesis authorized by Aaron; original transcripts and private freewrites are not imported. Optional `atUri`, `publication` (defaults to `techne.coop`), `lexicon`, and author `did` fields are inert. See [publishing notes](scripts/publish/README.md) for the two undecided paths. MDX accepts trusted author code at build time; the sample interaction is native HTML disclosure and needs no JavaScript.
 
 ## Design provenance
 
@@ -49,3 +49,11 @@ Typefaces, dark/light colors, v4 sunset palette and spacing tokens come from [To
 ## Review workflow
 
 Scaffold starts on `main`; subsequent changes use branches and PRs. Include `Co-authored-by: CodexJi <codexji@users.noreply.github.com>` when applicable. No deployment of the production domain without its owners' migration decision.
+
+## Experimental essay reader
+
+`src/content/writing/protocols-of-belonging.mdx` holds the complete essay text. It uses ordinary Markdown plus imports for two optional Astro demonstrations. Edit the essay in that file; the chapter map comes from its headings. The source download is generated from the same file, not a separate copy.
+
+`experience: essay` enables the chapter map, progress indicator, and “Just the essay” mode. `status: working-draft` labels a **public** work in progress in the index and on its page; this is independent of `draft: true`, which still excludes content from production. A public experiment therefore uses `draft: false` and `status: working-draft`. `provenance` states where the text came from and whether the authors have approved it.
+
+The demonstrations illustrate concepts; they do not connect to accounts. No reader responses are stored or transmitted. Prose, navigation, and disclosures work without JavaScript; scripts enable the optional controls. Reduced-motion and print styles are included. Components and styling live under `src/components/essay/` and `src/styles/essay.css`.

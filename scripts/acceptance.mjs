@@ -33,4 +33,14 @@ try {
   assert(!piece.includes('Also on atproto:'));
   assert.equal(load(piece)('link[rel="alternate"]').length, 0);
   console.log('PASS: preview-base build, internal links, production drafts excluded, absent atUri stays absent.');
+  const essay = load(readFileSync('dist/writing/protocols-of-belonging/index.html', 'utf8'));
+  assert.match(essay('.essay-status').text(), /Working draft/);
+  assert.match(index, /A home you can leave/);
+  assert.equal(essay('.essay-experiment').length, 2);
+  assert.equal(essay('.essay-map nav a').length, essay('article h2').length);
+  assert.equal(readFileSync('dist/writing/protocols-of-belonging/source.mdx', 'utf8'), readFileSync('src/content/writing/protocols-of-belonging.mdx', 'utf8'));
+  assert(!existsSync('dist/writing/draft-example/source.mdx'));
+  assert.equal(load(piece)('.essay-status').length, 0);
+  console.log('PASS: public working draft, chapter navigation, exact source download, standard article status unaffected.');
+
 } finally { if (existsSync(fixture)) unlinkSync(fixture); }
