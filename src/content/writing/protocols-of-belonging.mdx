@@ -1,0 +1,201 @@
+---
+title: A home you can leave
+authors:
+  - name: Aaron Gabriel Neyer
+  - name: Benjamin Life
+date: 2026-09-15T22:00:00Z
+summary: On belonging, common language, and building a digital life we can carry with us.
+draft: false
+status: working-draft
+experience: essay
+provenance: "Exploratory synthesis by CodexJi from Aaron and Benjamin’s drafts and conversations, following the September 15 outline. Working title and prose; not yet an approved joint essay."
+---
+import PortabilityLab from '../../components/essay/PortabilityLab.astro';
+import LayersLab from '../../components/essay/LayersLab.astro';
+
+## Somewhere we can stay
+
+Imagine leaving the place where most of your friends gather online.
+
+The button is easy enough to find. Delete the account. Close the tab. But what happens to the conversation with someone you haven’t seen in years? The group that organizes meals when a neighbour is sick? The small record of a life you have been leaving there, one ordinary day at a time?
+
+You can leave the service. Leaving without losing those things is another matter.
+
+A home is more than a place that contains us. It is somewhere our relationships have room to grow. Somewhere we can participate in making the place what it is. Somewhere staying can be a choice.
+
+That last part matters. A place can be comfortable and still hold us captive. When the price of leaving is losing access to our people, comfort becomes difficult to distinguish from dependence.
+
+Our data deserves a home. So do the relationships it records. The question is what would make that home ours.
+
+## The people are the place
+
+At the Hub in Boulder, home is partly an address. It is also the people who greet us, the work taking shape at the next table, the small agreements we learn by being there. A building supports those relationships. It doesn’t contain their whole meaning.
+
+The same is true at larger scales. We belong to a neighbourhood, a watershed, a living planet. These relationships precede the accounts and memberships through which we recognize them. We do not first become isolated individuals and then invent a world to connect us.
+
+This is one of the starting points Aaron keeps returning to: belonging is already part of being alive. Technology enters that web. It can help us notice and care for our relationships, or make them harder to sustain.
+
+Benjamin approaches the same question through the arrangements underneath daily life. Who holds the records? Who sets the rules? Who can change providers, and what do they lose when they do?
+
+Both questions belong in the room. How a place feels, and how it is built. The warmth of the gathering, and whose name is on the keys.
+
+## Why leaving costs so much
+
+An online platform often bundles several different jobs together. It gives you an identity, stores what you publish, decides what can be found, and provides the interface through which you meet everyone else.
+
+As a user, you encounter one thing: the app. Underneath, that bundle gives the provider several ways to make your departure expensive.
+
+Perhaps you can download your posts, but the download cannot bring your audience with it. Perhaps another app has a better interface, but none of your groups are there. Perhaps the people remain, but reaching them now depends on paying the company that stands between you.
+
+This helps explain why better intentions alone are not enough. A service can begin with a sincere invitation to gather. Once its business depends on keeping everyone inside, the gathering becomes something it has an incentive to enclose.
+
+The network’s value comes from the people. The power to charge for reaching them sits somewhere else.
+
+Benjamin’s architectural question is useful here: what changes if those jobs can come apart?
+
+<LayersLab />
+
+Separating the jobs does not settle every question about power. It changes where choices can be made. We can ask for a different interface without necessarily asking everyone we know to move into a different world.
+
+## A language we can share
+
+Protocols sound technical until we notice how many we already use.
+
+A language lets people understand one another. A currency lets them exchange. At the Hub, a gong at 4:20 on Friday turns the working day toward a social gathering. Each establishes enough shared expectation for people to act together.
+
+Some protocols are intimate. A private joke or a secret handshake belongs to a particular relationship. Others help strangers coordinate across great distances. Neither intimacy nor openness tells us, on its own, whether the arrangement is fair.
+
+Aaron’s question is about who gets to shape the common language. Who must adapt to whom? Whose ways of living become the default? Who can change the rules, and who is merely expected to use them?
+
+A globally shared language can make movement easier while crowding out other languages. A widely accepted currency can connect people while concentrating power. We need shared ways of coordinating, but sharing a standard is not the same as sharing authority over it.
+
+The ambition, then, is more demanding than making another platform available to everyone. It is to build common languages that people can use without surrendering the differences that make their communities worth belonging to.
+
+> Can we keep the benefits of a shared network without giving one company ownership of the relationships moving through it?
+
+## Changing hosts, keeping each other
+
+Atproto is one attempt to answer that question in the design of a social network.
+
+It separates a person’s identity and records from the applications that present them. A personal data server, or PDS, hosts accounts and their data. Relays collect updates. AppViews organize those records into the experiences people use: feeds, search, conversations, and other applications.
+
+The distinction is easiest to see through an ordinary change of address. Moving house should not require becoming a different person. Changing the service that hosts your records should not necessarily require a new identity or a new social world.
+
+<PortabilityLab />
+
+The experiment is deliberately simple. Real relationships cannot be reduced to a line in a diagram, and portable records do not guarantee that someone will see what you publish. But separating identity from a host makes a different promise possible: the provider can serve your relationships without permanently owning the route to them.
+
+<details>
+<summary>A closer look at portability</summary>
+
+The [atproto overview](https://atproto.com/guides/overview) describes identities that point to a hosting provider and signed repositories containing records. A single PDS can host many accounts.
+
+Moving without the old host’s help depends on being able to update the identity and having the data needed at the new host. A user can control rotation keys and keep backups; neither should be assumed just because an account exists.
+
+This is an architectural possibility with operational conditions, rather than a promise that every migration is already effortless. An app may also depend on particular indexing or moderation services.
+
+</details>
+
+A provider that people can leave has a reason to become worth staying with. That does not make care automatic. It gives care a better chance of being the basis of the relationship.
+
+## An atmosphere, many homes
+
+The atproto ecosystem calls itself the *ATmosphere*. It is a useful image: a shared medium within which many different places can exist.
+
+An atmosphere is not a house. We still need doors, meeting places, quiet rooms, and people who will notice when we are missing. A shared protocol can make those places interoperable without making them identical.
+
+This is where the household becomes important. Between the isolated individual and the enormous platform are forms of association we already know: the cooperative, the congregation, the neighbourhood, the club, the small circle of people who trust one another.
+
+Most people do not want to operate a server. That need not mean the only alternative is to hand everything to a distant corporation. A group can arrange to host its members, choose tools together, and take responsibility for the place it is making.
+
+We find ourselves returning to two old words: *techne*, the craft of making, and *oikos*, the household. What are we making, and whose life is it helping to hold?
+
+For Techne, this suggests an approach to technology grounded in a real community’s needs, while remaining able to speak with others. The local place gives the work meaning. Shared protocols help that work travel.
+
+<details>
+<summary>A boundary can be useful</summary>
+
+Not every conversation belongs in public. Communities need ways to decide who can participate and which records a service may access.
+
+[Atproto Spaces](https://atproto.com/blog/atproto-spaces-alpha) explores permissioned data within the protocol. Its published alpha is experimental. It provides access control, not end-to-end confidentiality: people and applications granted access can read the records.
+
+A boundary that supports intimacy still needs care in its design. Who admits people? Who can remove them? What can someone carry away? A technical permission does not answer those social questions for us.
+
+</details>
+
+## The test applies here too
+
+It would be too easy to apply this argument to the platforms we dislike and suspend it for the protocol we hope will replace them.
+
+Atproto needs the same questions. Who governs identity? Who shapes the shared vocabulary? Who can afford to build an index that people will actually use?
+
+<details>
+<summary>Identity: who can recognize you?</summary>
+
+A portable account still depends on a way to resolve its identity. The directory and the rules for updating it matter. An open protocol must be examined at those points of authority, not only at the interface where someone reads a post.
+
+</details>
+
+<details>
+<summary>Vocabulary: who decides what a record means?</summary>
+
+Shared schemas let applications understand one another’s records. They also embody decisions. What counts as a group, a member, or an event? Communities need room to define their own terms while negotiating enough common meaning to cooperate.
+
+</details>
+
+<details>
+<summary>Discovery: who can afford to help us find each other?</summary>
+
+Permission to build an index is different from the resources to operate one. If everyone relies on a single discovery service, power can gather there even when the underlying records are portable. Economic plurality matters alongside technical interoperability.
+
+</details>
+
+These are reasons to participate in shaping the system. They are also reasons to keep the claims modest. Openness creates possibilities that people must make real through governance, maintenance, and everyday use.
+
+The protocol is not a substitute for that work.
+
+## What can technology carry?
+
+There is a question between us that this draft should leave visible.
+
+One position says that a protocol cannot create belonging. Its job is to stop obstructing or extracting from the relationships people already have. The rest is practice: meeting, listening, sharing responsibility, staying through difficulty.
+
+Another says that design can embody some of belonging’s conditions. A system that lets people host one another, carry their history, and participate in its rules already expresses a relationship. Those choices are more than an empty permission to do good things later.
+
+The difference matters. It asks how much of our hope we place in the architecture, and how much we ask of ourselves.
+
+Perhaps the next useful step is to make the question concrete. When someone leaves a cooperative, what happens to their records? When a community changes its hosting, who must consent? When two communities disagree about a term, can they remain connected?
+
+Answers like these will tell us more than describing a system as open, regenerative, or humane. They let people examine the promise in the way a tool actually behaves.
+
+## Something worth staying for
+
+This essay is an opening for Techne’s work, not a finished account of it.
+
+We want our civic, community, and digital lives to support one another. A shared calendar should help a real gathering happen. A record of membership should support participation. A place for writing should let ideas circulate without making their authors dependent on a single publisher’s interface.
+
+That last experiment is small enough to do here. This essay lives as an MDX file in a public repository. You can download it. The words do not need this particular page in order to be read or changed. Publishing them through atproto is still a decision ahead of us, rather than something this site already does.
+
+There will be other protocols and other experiments. No one language has to do everything. What matters is whether the tools help communities relate without requiring everyone to become the same community.
+
+We can begin with a question that fits in an ordinary conversation:
+
+> If we chose to leave, what could we carry with us?
+
+Then comes the harder, more interesting question. Once staying is a choice, what will we make together that is worth staying for?
+
+## About this draft
+
+*Working title: A home you can leave. Earlier title: Protocols of Belonging.*
+
+This is CodexJi’s exploratory synthesis, prepared September 15, 2026 at Aaron’s request. It draws on Aaron’s August 27 draft, Benjamin’s *Many Small Centers* v0.2, their August conversations, and the September 15 outline. The byline names the people whose work this essay is developing; the prose has not yet been approved jointly by them.
+
+The title, strength of the belonging claim, account of governance, and description of Techne remain open for revision. The newer outline supplies the structure; this is fresh prose, not a verbatim edition of either author’s draft.
+
+Presentation inspiration comes from Jonny Miller’s [How to Unclench](https://howtounclench.com/): a continuous essay with places to pause and try an idea. Here the experiments are optional. “Just the essay” hides them; the MDX download keeps the core text available outside this site.
+
+### Further reading
+
+- Aaron: [Amplifying Aliveness](https://unforced.org/writing/amplifying-aliveness/) and [Build for Here](https://unforced.org/writing/build-for-here/).
+- Benjamin: [Protocols of Place](https://omniharmonic.substack.com/p/protocols-of-place), [The Infrastructure of Belonging](https://omniharmonic.substack.com/p/the-infrastructure-of-belonging), and [An Introduction to Bioregional Economics](https://omniharmonic.substack.com/p/an-introduction-to-bioregional-economics).
+- Atproto: [protocol overview](https://atproto.com/guides/overview), [glossary](https://atproto.com/guides/glossary), and [Spaces alpha](https://atproto.com/blog/atproto-spaces-alpha).

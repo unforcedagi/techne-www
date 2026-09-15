@@ -1,0 +1,55 @@
+---
+import type { MarkdownHeading } from 'astro';
+import { local } from '../../lib/writing';
+import '../../styles/essay.css';
+interface Props { headings: MarkdownHeading[]; slug: string; }
+const { headings, slug } = Astro.props;
+const chapters = headings.filter(heading => heading.depth === 2);
+---
+<div class="essay-reader">
+  <aside class="essay-map" aria-label="Essay navigation">
+    <details open>
+      <summary class="eyebrow">Inside the essay</summary>
+      <nav aria-label="Chapters"><ol>{chapters.map((heading, i) => <li><a href={`#${heading.slug}`}><span aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>{heading.text.replace(/^[IVX]+\. /, '')}</a></li>)}</ol></nav>
+    </details>
+    <div class="reader-actions">
+      <button type="button" class="reading-mode" aria-pressed="false" hidden>Just the essay</button>
+      <a href={local(`writing/${slug}/source.mdx`)} download={`${slug}.mdx`}>↓ Download MDX</a>
+    </div>
+    <p class="meta">Read straight through.<br />Or pause to try an idea.</p>
+    <div class="reading-progress" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" hidden><span></span></div>
+  </aside>
+  <article class="prose essay-prose"><slot /></article>
+</div>
+<script>
+  const reader = document.querySelector<HTMLElement>('.essay-reader');
+  if (reader) {
+    const button = reader.querySelector<HTMLButtonElement>('.reading-mode')!;
+    const progress = reader.querySelector<HTMLElement>('.reading-progress')!;
+    const article = reader.querySelector<HTMLElement>('article')!;
+    button.hidden = false; progress.hidden = false;
+    button.addEventListener('click', () => {
+      const plain = button.getAttribute('aria-pressed') !== 'true';
+      button.setAttribute('aria-pressed', String(plain));
+      reader.classList.toggle('plain-reading', plain);
+      button.textContent = plain ? 'Show experiments' : 'Just the essay';
+      update();
+    });
+    const headings = [...article.querySelectorAll<HTMLElement>('h2')];
+    const links = [...reader.querySelectorAll<HTMLAnchorElement>('.essay-map nav a')];
+    let pending = false;
+    const update = () => {
+      pending = false;
+      const rect = article.getBoundingClientRect();
+      const value = Math.round(Math.max(0, Math.min(100, -rect.top / Math.max(1, rect.height - window.innerHeight) * 100)));
+      progress.setAttribute('aria-valuenow', String(value));
+      progress.querySelector<HTMLElement>('span')!.style.width = `${value}%`;
+      const current = [...headings].reverse().find(heading => heading.getBoundingClientRect().top <= 160) || headings[0];
+      links.forEach(link => { if (link.hash === `#${current?.id}`) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current'); });
+    };
+    const schedule = () => { if (!pending) { pending = true; requestAnimationFrame(update); } };
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    update();
+  }
+</script>

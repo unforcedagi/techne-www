@@ -1,0 +1,27 @@
+<section class="essay-experiment layers-lab" aria-labelledby="layers-title">
+  <span class="eyebrow">Try the argument / 01</span>
+  <h3 id="layers-title">One bundle.<br />Four different jobs.</h3>
+  <p>These roles can be bound to one provider, or separated so that replacing an interface does not mean replacing your identity.</p>
+  <button type="button" class="split-layers" aria-pressed="false" hidden>Separate the roles →</button>
+  <div class="layer-stack" data-separated="false">
+    <div><span>01</span><strong>Identity</strong><small>Who you are</small></div>
+    <div><span>02</span><strong>Records</strong><small>What you publish</small></div>
+    <div><span>03</span><strong>Index</strong><small>What can be found</small></div>
+    <div><span>04</span><strong>Interface</strong><small>How you experience it</small></div>
+  </div>
+  <p class="layer-result" aria-live="polite">One provider binds the four roles together. Changing providers can mean starting over.</p>
+  <p class="meta">Separation creates room for choice. It does not, by itself, make alternatives affordable or widely used.</p>
+</section>
+<script>
+  document.querySelectorAll<HTMLElement>('.layers-lab').forEach(lab => {
+    const button = lab.querySelector<HTMLButtonElement>('button')!;
+    const stack = lab.querySelector<HTMLElement>('.layer-stack')!;
+    button.hidden = false;
+    button.addEventListener('click', () => {
+      const separated = button.getAttribute('aria-pressed') !== 'true';
+      button.setAttribute('aria-pressed', String(separated)); stack.dataset.separated = String(separated);
+      button.textContent = separated ? 'Bring the roles together ↶' : 'Separate the roles →';
+      lab.querySelector('.layer-result')!.textContent = separated ? 'An identity can point to a different host; different services can index records and present them. These are distinct choices.' : 'One provider binds the four roles together. Changing providers can mean starting over.';
+    });
+  });
+</script>
